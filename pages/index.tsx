@@ -1,12 +1,11 @@
+import Home from '@/components/screens/home/Home';
 import type {NextPage} from 'next';
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
 
    return (
-      <div className="">
-         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus.
-      </div>
+      <Home />
    );
 };
 
-export default Home;
+export default HomePage;

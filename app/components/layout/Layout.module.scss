@@ -1,0 +1,8 @@
+.layout {
+  @apply flex bg-bgcolor-100;
+  min-height: 100vh;
+
+  &>main {
+    @apply flex-grow px-4;
+  }
+}

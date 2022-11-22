@@ -12,6 +12,10 @@ module.exports = {
     extend: {
       colors: {
         primary,
+        bgcolor: {
+          100: '#F9FAF5',
+          200: '#E5E6E1'
+        }
       },
     },
     keyframes: {
