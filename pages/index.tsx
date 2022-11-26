@@ -1,11 +1,9 @@
 import Home from '@/components/screens/home/Home';
-import type {NextPage} from 'next';
+import Meta from '@/utils/meta/Meta';
+import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
-
-   return (
-      <Home />
-   );
+  return <Home />;
 };
 
 export default HomePage;
