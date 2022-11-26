@@ -1,4 +1,5 @@
 .menu {
+  @apply mt-3.5 first:mt-0;
   .heading {
     @apply uppercase font-medium;
   }
@@ -7,14 +8,17 @@
     @apply flex flex-col gap-1.5 mt-3.5;
     >li {
       a {
-        @apply flex gap-2 items-center;
+        @apply flex gap-1 items-center;
       }
       span {
-        @apply text-lg
+        @apply text-lg;
       }
+    }
+    .menuItem {
       svg {
         @apply w-6 h-6;
       }
     }
+    .subjectMenuItem {}
   }
 }

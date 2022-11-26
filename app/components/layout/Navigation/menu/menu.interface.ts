@@ -10,3 +10,9 @@ export interface IMenu {
   items: IMenuItem[];
   title: string;
 }
+
+export interface IMenuItemSubject {
+  title: string;
+  link: string;
+  countTests: number;
+}
