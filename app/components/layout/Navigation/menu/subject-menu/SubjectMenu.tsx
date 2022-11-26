@@ -2,12 +2,13 @@ import { FC } from 'react';
 import { usePopularSubjects } from '@/components/layout/Navigation/menu/subject-menu/usePopularSubjects';
 import styles from '../Menu.module.scss';
 import SubjectItemMenu from '@/components/layout/Navigation/menu/subject-menu/SubjectItemMenu';
+import SkeletonLoader from '@/ui/SkeletonLoader';
 
 const SubjectMenu: FC = () => {
   const { isLoading, data } = usePopularSubjects();
 
   return isLoading || !data ? (
-    <div>Loading...</div>
+    <SkeletonLoader count={5} className="h-5 mt-3" />
   ) : (
     <div className={styles.menu}>
       <div className={styles.heading}>Популярні предмети</div>

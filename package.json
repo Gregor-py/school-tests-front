@@ -13,10 +13,12 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tanstack/react-query-devtools": "^4.16.1",
     "axios": "^1.2.0",
+    "classnames": "^2.3.2",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
+    "react-loading-skeleton": "^3.1.0",
     "react-query": "^3.39.2",
     "sass": "^1.55.0"
   },
