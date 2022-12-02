@@ -1,0 +1,19 @@
+.form {
+  @apply bg-white rounded-xl px-20 py-16;
+
+  >span {
+    @apply mt-2 inline-block;
+    a {
+      @apply text-blue-500 font-bold;
+    }
+  }
+}
+.section {
+  @apply flex items-center justify-center h-full;
+}
+.button {
+  @apply w-full mt-4;
+}
+.field {
+  @apply mt-2;
+}
