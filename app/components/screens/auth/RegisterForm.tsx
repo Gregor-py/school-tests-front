@@ -11,15 +11,17 @@ import { toast } from 'react-toastify';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './Auth.module.scss';
 import Link from 'next/link';
+import { useActions } from '@/hooks/useActions';
 
 const RegisterForm: FC = () => {
   const { register, handleSubmit, formState, reset } =
     useForm<RegisterInputFields>();
   const { isLoading } = useAuth();
+  const { register: registerActions } = useActions();
 
-  const onSubmit: SubmitHandler<LoginInputFields> = (data) => {
-    toast.success(JSON.stringify(data));
-    reset();
+  const onSubmit: SubmitHandler<RegisterInputFields> = (data) => {
+    data.schoolClass = Number(data.schoolClass);
+    registerActions(data);
   };
 
   return (
@@ -57,7 +59,7 @@ const RegisterForm: FC = () => {
         className={styles.field}
       />
       <Field
-        {...register('class', {
+        {...register('schoolClass', {
           required: 'Поле має бути заповнене',
           min: {
             value: 1,
@@ -69,7 +71,7 @@ const RegisterForm: FC = () => {
           }
         })}
         placeholder="Клас"
-        error={formState.errors.class}
+        error={formState.errors.schoolClass}
         icon={'MdClass'}
         className={styles.field}
       />

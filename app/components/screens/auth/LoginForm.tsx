@@ -8,15 +8,16 @@ import { toast } from 'react-toastify';
 import { useAuth } from '@/hooks/useAuth';
 import styles from './Auth.module.scss';
 import Link from 'next/link';
+import { useActions } from '@/hooks/useActions';
 
 const LoginForm: FC = () => {
   const { register, handleSubmit, formState, reset } =
     useForm<LoginInputFields>();
   const { isLoading } = useAuth();
+  const { login } = useActions();
 
   const onSubmit: SubmitHandler<LoginInputFields> = (data) => {
-    toast.success(JSON.stringify(data));
-    reset();
+    login(data);
   };
 
   return (
