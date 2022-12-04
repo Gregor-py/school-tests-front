@@ -3,8 +3,10 @@ import Meta from '@/utils/meta/Meta';
 import type { NextPage } from 'next';
 import { NextPageAuth } from '@/shared/types/auth.types';
 
-const HomePage: NextPageAuth = () => {
+const InfoPage: NextPageAuth = () => {
   return <Home />;
 };
 
-export default HomePage;
+InfoPage.isOnlyUser = true;
+
+export default InfoPage;
