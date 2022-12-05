@@ -2,17 +2,15 @@ import { IMenu } from '@/components/layout/Navigation/menu/menu.interface';
 
 export const navigationMenu: IMenu = {
   title: 'Навігація',
-  items: [
-    { icon: 'MdRecommend', link: '/', title: 'Рекомендації' },
-    { icon: 'MdSearch', link: '/', title: 'Пошук' }
-  ]
+  items: [{ icon: 'MdHome', link: '/', title: 'Головна' }]
 };
 
 export const profileMenu: IMenu = {
   title: 'Профіль',
   items: [
-    { icon: 'MdHail', link: '/', title: 'Профіль' },
-    // { icon: 'MdRecommend', link: '/', title: 'Тести які сподобались' },
-    { icon: 'MdFavorite', link: '/', title: 'Обрані тести' }
+    { icon: 'MdHail', link: '/profile', title: 'Профіль' },
+    { icon: 'MdLibraryBooks', link: '/library', title: 'Бібліотека' },
+    { icon: 'MdFavorite', link: '/favorite', title: 'Обрані тести' },
+    { icon: 'MdWork', link: '/workshop', title: 'Майстерня' }
   ]
 };
