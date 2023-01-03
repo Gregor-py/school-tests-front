@@ -5,11 +5,11 @@ import styles from '../Menu.module.scss';
 
 const SubjectMenuItem: FC<IMenuItemSubject> = ({ link, title, countTests }) => {
   return (
-    <li className={styles.subjectItemMenu}>
+    <li className={styles.subjectMenuItem}>
       <Link href={link}>
         <a>
           <span>{title}</span>
-          <span>({countTests})</span>
+          <span className={styles.countTest}>{countTests}</span>
         </a>
       </Link>
     </li>

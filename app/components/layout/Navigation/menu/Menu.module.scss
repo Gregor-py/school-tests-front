@@ -1,24 +1,41 @@
 .menu {
   @apply mt-3.5 first:mt-0;
   .heading {
-    @apply uppercase font-medium;
+    @apply uppercase text-xs tracking-wider uppercase leading-4 pl-2.5;
   }
 
   >ul {
-    @apply flex flex-col gap-1.5 mt-3.5;
+    @apply mt-1;
     >li {
       a {
-        @apply flex gap-1 items-center;
-      }
-      span {
-        @apply text-lg;
+        @apply flex gap-2 items-center py-2.5 px-2.5 transition-all rounded-xl;
+
+        &:hover {
+          @apply bg-primary bg-opacity-10;
+
+          span {
+            @apply text-textcolor-300
+          }
+
+          svg {
+            @apply fill-primary;
+          }
+        }
+
+        span {
+          @apply text-base;
+        }
       }
     }
     .menuItem {
       svg {
-        @apply w-6 h-6;
+        @apply w-6 h-6 transition-all;
       }
     }
-    .subjectMenuItem {}
+    .subjectMenuItem {
+      .countTest {
+        @apply text-white inline-block bg-primary text-xs px-1 py-0.5 rounded-xl;
+      }
+    }
   }
 }

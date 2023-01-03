@@ -1,20 +1,31 @@
 const colors = require('tailwindcss/colors');
 const plugin = require('tailwindcss/plugin');
 
-const primary = '#535DB0';
+const primary = '#0085FF';
 
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './app/components/**/*/*.{js,ts,jsx,tsx}'
   ],
+  variants: {
+    extend: {
+      opacity: ['group-hover'],
+      backgroundColor: ['group-hover']
+    }
+  },
   theme: {
     extend: {
       colors: {
         primary,
         bgcolor: {
-          100: '#F9FAF5',
-          200: '#ECEDE8'
+          100: '#ffffff',
+          200: '#F7F7F7'
+        },
+        textcolor: {
+          100: '#969696',
+          200: '#585757',
+          300: '#1C1C1C'
         }
       }
     },
@@ -69,10 +80,10 @@ module.exports = {
         },
 
         '.air-block': {
-          borderRadius: theme('borderRadius.layout'),
-          backgroundColor: theme('colors.gray.950'),
-          color: theme('colors.white'),
-          boxShadow: theme('boxShadow.lg')
+          borderRadius: 8,
+          boxShadow:
+            '0px 1px 3px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.06), 0px 1px 1px rgba(0, 0, 0, 0.08)',
+          background: '#FFFFFF'
         }
       }),
         addUtilities({
