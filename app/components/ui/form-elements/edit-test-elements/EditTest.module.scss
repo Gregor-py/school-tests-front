@@ -1,0 +1,46 @@
+.EditTestBlock {
+  @apply rounded-lg p-4 bg-white border border-gray-300 max-w-3xl;
+  margin: 0 auto;
+}
+
+.h3 {
+  input {
+    @apply text-sm;
+  }
+}
+
+.h2 {
+  input {
+    @apply text-xl;
+  }
+}
+
+.h1 {
+  input {
+    @apply text-3xl;
+  }
+}
+
+.EditTestInput {
+  @apply relative w-full;
+  input,textarea {
+    @apply block border-0 border-b border-b-transparent hover:border-b-textcolor-200 w-full focus:border-transparent focus:ring-0 focus:border-b-0 resize-none overflow-y-hidden;
+  }
+
+  textarea {
+    @apply text-sm;
+  }
+
+  &Active {
+    &:after {
+      width: 100% !important;
+    }
+  }
+
+  &:after {
+    content: '';
+    @apply absolute bottom-0 left-0 block bg-primary h-0.5;
+    width: 0px;
+    transition: width .3s ease;
+  }
+}

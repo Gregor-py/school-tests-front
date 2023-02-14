@@ -4,3 +4,5 @@ export const getSubjectsUrl = (string: string) =>
   `${API_URL}/subjects${string}`;
 
 export const getAuthUrl = (string: string) => `${API_URL}/auth${string}`;
+
+export const getTestUrl = (string: string) => `${API_URL}/tests${string}`;
