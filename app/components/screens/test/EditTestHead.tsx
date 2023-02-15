@@ -1,5 +1,5 @@
-import Button from '@/components/ui/form-elements/Button'
 import EditTestBlock from '@/components/ui/form-elements/edit-test-elements/EditTestBlock'
+import { useDebouncedMutation } from '@/hooks/useDebouncedMutation'
 import EditTestInputLine from '@/ui/form-elements/edit-test-elements/EditTestInputLine'
 import EditTestTextarea from '@/ui/form-elements/edit-test-elements/EditTestTextarea'
 import { ChangeEvent, FC, useState } from 'react'
@@ -10,12 +10,15 @@ const EditTestHead: FC<{ testId: string }> = ({ testId }) => {
   const [descriptionInput, setDescriptionInput] = useState('Description')
   const { changeDescription, changeTitle } = useEditTestHead()
 
+  useDebouncedMutation(() => changeTitle({ newTitle: titleInput, testId }), 600, titleInput)
+  useDebouncedMutation(() => changeDescription({ description: descriptionInput, testId }), 600, descriptionInput)
+
   return (
     <EditTestBlock>
       <EditTestInputLine
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setTitleInput(event.target.value)
-        }
+        }}
         value={titleInput}
         sizeType="h1"
       />
@@ -25,9 +28,6 @@ const EditTestHead: FC<{ testId: string }> = ({ testId }) => {
         }
         value={descriptionInput}
       />
-      <Button onClick={() => { changeTitle({ newTitle: titleInput, testId: testId }) }}>
-        Save
-      </Button>
     </EditTestBlock>
   )
 }
