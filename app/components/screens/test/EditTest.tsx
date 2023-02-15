@@ -1,11 +1,13 @@
+import { MaterialIcon } from '@/components/ui/icons/MaterialIcon'
 import SkeletonLoader from '@/components/ui/SkeletonLoader'
 import { EditTestService } from '@/services/test/edit-test.service'
 import { FC } from 'react'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
+import EditTask from './EditTask'
 import EditTestHead from './EditTestHead'
 
 const EditTest: FC<{ testId: string }> = ({ testId }) => {
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     'get test data for edit',
     () => EditTestService.getTest(testId),
     {
@@ -15,6 +17,13 @@ const EditTest: FC<{ testId: string }> = ({ testId }) => {
       onError(error) { }
     }
   )
+
+  const { mutate: addTask } = useMutation('add task to test', (testId: string) => EditTestService.addTask(testId))
+
+  const handleClick = async () => {
+    await addTask(testId)
+    refetch()
+  }
 
   if (isLoading || !data) {
     return <div className='mx-auto max-w-3xl'>
@@ -26,6 +35,15 @@ const EditTest: FC<{ testId: string }> = ({ testId }) => {
   return (
     <div className='py-4'>
       <EditTestHead testId={testId} description={data.title} title={data.description} />
+
+      {(data.tasks.map(taskId => <EditTask taskId={taskId} key={taskId} />))}
+
+      <button
+        className="text-7xl mx-auto block mt-4"
+        onClick={handleClick}
+      >
+        <MaterialIcon name={'MdAddCircleOutline'} />
+      </button>
     </div>
   )
 }

@@ -1,13 +1,17 @@
+import classNames from 'classnames'
 import { FC, useState } from 'react'
 import styles from './EditTest.module.scss'
 
-const EditTestBlock: FC<{ children: React.ReactNode }> = ({
-	children
+interface EditTestBlock { children: React.ReactNode, className?: string }
+
+const EditTestBlock: FC<EditTestBlock> = ({
+	children,
+	className = ''
 }) => {
 	const [isFocus, setIsFocus] = useState(false)
 
 	return (
-		<div className={styles.EditTestBlock}>
+		<div className={classNames(styles.EditTestBlock, className)}>
 			{children}
 		</div>
 	)

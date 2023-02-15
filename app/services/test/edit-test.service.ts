@@ -17,5 +17,9 @@ export const EditTestService = {
 
   async getTest(testId: string) {
     return axiosAuth.get<ITest>(getTestUrl(`/${testId}`))
+  },
+
+  async addTask(testId: string) {
+    return axiosAuth.put<string>(getTestUrl(`/add-task/${testId}`))
   }
 }
