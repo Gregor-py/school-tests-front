@@ -5,9 +5,15 @@ import EditTestTextarea from '@/ui/form-elements/edit-test-elements/EditTestText
 import { ChangeEvent, FC, useState } from 'react'
 import { useEditTestHead } from './useEditTestHead'
 
-const EditTestHead: FC<{ testId: string }> = ({ testId }) => {
-  const [titleInput, setTitleInput] = useState('Title')
-  const [descriptionInput, setDescriptionInput] = useState('Description')
+interface EditTestHead {
+  testId: string
+  title: string
+  description: string
+}
+
+const EditTestHead: FC<EditTestHead> = ({ testId, description, title }) => {
+  const [titleInput, setTitleInput] = useState(description)
+  const [descriptionInput, setDescriptionInput] = useState(title)
   const { changeDescription, changeTitle } = useEditTestHead()
 
   useDebouncedMutation(() => changeTitle({ newTitle: titleInput, testId }), 600, titleInput)

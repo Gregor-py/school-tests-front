@@ -1,17 +1,31 @@
-import { ChangeEvent, FC, useState } from 'react'
+import SkeletonLoader from '@/components/ui/SkeletonLoader'
+import { EditTestService } from '@/services/test/edit-test.service'
+import { FC } from 'react'
+import { useQuery } from 'react-query'
 import EditTestHead from './EditTestHead'
 
 const EditTest: FC<{ testId: string }> = ({ testId }) => {
-  const [text, setText] = useState('input text')
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value)
+  const { data, isLoading } = useQuery(
+    'get test data for edit',
+    () => EditTestService.getTest(testId),
+    {
+      select({ data }) {
+        return data
+      },
+      onError(error) { }
+    }
+  )
+
+  if (isLoading || !data) {
+    return <div className='mx-auto max-w-3xl'>
+      <SkeletonLoader count={1} className="h-40 mt-5" />
+      <SkeletonLoader count={5} className="h-80 mt-6" />
+    </div>
   }
-  const onChangeTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value)
-  }
+
   return (
     <div className='py-4'>
-      <EditTestHead testId={testId} />
+      <EditTestHead testId={testId} description={data.title} title={data.description} />
     </div>
   )
 }

@@ -1,11 +1,9 @@
-import { ChangeEvent, FC, useState } from 'react';
-import styles from './EditTest.module.scss';
 import {
-  EditTestInput,
-  EditTestInputLine,
   EditTestTextarea
-} from '@/ui/form-elements/edit-test-elements/edit-test.types';
-import classNames from 'classnames';
+} from '@/ui/form-elements/edit-test-elements/edit-test.types'
+import classNames from 'classnames'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import styles from './EditTest.module.scss'
 
 const EditTestTextarea: FC<EditTestTextarea> = ({
   value,
@@ -14,12 +12,19 @@ const EditTestTextarea: FC<EditTestTextarea> = ({
   className = '',
   isActive
 }) => {
-  const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
+    }
+  }, [])
 
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    event.target.style.height = `${event.target.scrollHeight}px`;
-    onChange(event);
-  };
+    event.target.style.height = `${event.target.scrollHeight}px`
+    onChange(event)
+  }
   return (
     <div
       className={classNames(
@@ -30,6 +35,7 @@ const EditTestTextarea: FC<EditTestTextarea> = ({
       )}
     >
       <textarea
+        ref={textareaRef}
         rows={1}
         value={value}
         onChange={handleChange}
@@ -37,7 +43,7 @@ const EditTestTextarea: FC<EditTestTextarea> = ({
         onBlur={() => setIsFocus(false)}
       ></textarea>
     </div>
-  );
-};
+  )
+}
 
-export default EditTestTextarea;
+export default EditTestTextarea
