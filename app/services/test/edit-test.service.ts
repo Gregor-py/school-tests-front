@@ -21,5 +21,6 @@ export const EditTestService = {
 
   async addTask(testId: string) {
     return axiosAuth.put<string>(getTestUrl(`/add-task/${testId}`))
-  }
+  },
+
 }

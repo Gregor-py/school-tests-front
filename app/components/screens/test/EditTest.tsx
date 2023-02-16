@@ -41,7 +41,7 @@ const EditTest: FC<{ testId: string }> = ({ testId }) => {
     <div className='py-4'>
       <EditTestHead testId={testId} description={data.title} title={data.description} />
 
-      {(data.tasks.map(taskId => <EditTask taskId={taskId} key={taskId} />))}
+      {(data.tasks.map(taskId => <EditTask testId={testId} taskId={taskId} key={taskId} />))}
 
       <button
         className="text-7xl mx-auto block mt-4"

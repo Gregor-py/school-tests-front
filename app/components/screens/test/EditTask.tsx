@@ -5,9 +5,10 @@ import { EditTaskService } from '@/services/task/edit-task.service'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import AddAnswerVariantButton from './AddAnswerVariantButton'
+import DeleteTaskButton from './DeleteTaskButton'
 import EditAnswerVariant from './EditAnswerVariant'
 
-const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
+const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) => {
 	const { data, isLoading, refetch, isSuccess } = useQuery(
 		['get task data for edit', taskId],
 		() => EditTaskService.getTaskById(taskId),
@@ -34,11 +35,14 @@ const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 	}
 	return <EditTestBlock>
 		<div className=''>
-			<EditTestInputLine
-				onChange={(event: ChangeEvent<HTMLInputElement>) => setQuestionInput(event.target.value)}
-				value={questionInput ? questionInput : ''}
-				sizeType="h2"
-			/>
+			<div className="flex">
+				<EditTestInputLine
+					onChange={(event: ChangeEvent<HTMLInputElement>) => setQuestionInput(event.target.value)}
+					value={questionInput ? questionInput : ''}
+					sizeType="h2"
+				/>
+				<DeleteTaskButton refetchTest={refetch} taskId={taskId} testId={testId} />
+			</div>
 
 			<div>
 				{data.answerVariants.map(answer => <EditAnswerVariant
@@ -48,7 +52,6 @@ const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 					key={answer}
 				/>)}
 			</div>
-
 
 			<AddAnswerVariantButton refetch={() => refetch()} taskId={taskId} />
 		</div>

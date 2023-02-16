@@ -25,7 +25,7 @@ const DeleteAnswerButton: FC<DeleteAnswerButton> = ({ answerId, taskId, refetchT
 
 	return (
 		<button onClick={handleClick} className={styles.deleteButton}>
-			<MaterialIcon name='MdDeleteOutline' />
+			<MaterialIcon name='MdCancel' />
 		</button>
 	)
 }

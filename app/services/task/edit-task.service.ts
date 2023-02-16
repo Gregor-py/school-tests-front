@@ -1,4 +1,4 @@
-import { getAnswerUrl, getTaskUrl } from '@/config/api.config'
+import { getAnswerUrl, getTaskUrl, getTestUrl } from '@/config/api.config'
 import { IAnswer, ITask } from '@/shared/types/test.types'
 import { axiosAuth } from 'api/interceptors'
 
@@ -20,5 +20,8 @@ export const EditTaskService = {
 	},
 	async deleteAnswer(answerId: string, taskId: string) {
 		return axiosAuth.put<string>(getTaskUrl(`/answer/${taskId}`), { answerId: answerId })
+	},
+	async deleteTask(taskId: string, testId: string) {
+		return axiosAuth.put<string>(getTestUrl(`/task-delete/${testId}`), { taskId: taskId })
 	}
 }
