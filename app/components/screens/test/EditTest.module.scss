@@ -1,0 +1,23 @@
+.editAnswerVariant {}
+.decor {
+	@apply w-5 h-5 border rounded-full;
+}
+.AddAnswerVariantButton {
+	@apply flex pl-1 gap-x-3 mt-3 items-center;
+	.AddAnswerVariantButtonText {
+		@apply text-sm relative;
+		transform: translateY(-2px);
+
+		&:hover {
+			&::after {
+				@apply w-full;
+			}
+		}
+
+		&::after {
+			content: '';
+			height: 1px;
+			@apply block absolute -bottom-0.5 w-0 bg-gray-400 transition-all;
+		}
+	}
+}

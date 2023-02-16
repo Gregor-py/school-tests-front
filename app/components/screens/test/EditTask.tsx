@@ -4,6 +4,7 @@ import { useDebouncedMutation } from '@/hooks/useDebouncedMutation'
 import { EditTaskService } from '@/services/task/edit-task.service'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
+import AddAnswerVariantButton from './AddAnswerVariantButton'
 
 const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 	const { data, isLoading, refetch, isSuccess } = useQuery(
@@ -37,6 +38,7 @@ const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 				value={questionInput ? questionInput : ''}
 				sizeType="h2"
 			/>
+			<AddAnswerVariantButton refetch={() => refetch()} taskId={taskId} />
 		</div>
 	</EditTestBlock>
 }

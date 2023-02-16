@@ -8,5 +8,8 @@ export const EditTaskService = {
 	},
 	async changeTaskQuestion(taskId: string, newQuestion: string) {
 		return axiosAuth.put<ITask>(getTaskUrl(`/question/${taskId}`), { newQuestion: newQuestion })
+	},
+	async addAnswer(taskId: string) {
+		return axiosAuth.post<string>(getTaskUrl(`/answer/${taskId}`))
 	}
 }
