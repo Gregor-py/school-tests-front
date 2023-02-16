@@ -9,7 +9,7 @@ interface AddAnswerVariantButton {
 }
 
 const AddAnswerVariantButton: FC<AddAnswerVariantButton> = ({ refetch, taskId }) => {
-	const { mutate: addAnswer, isSuccess } = useMutation('add answer to task', (taskId: string) => EditTaskService.addAnswer(taskId))
+	const { mutate: addAnswer, isSuccess } = useMutation(['add answer to task', taskId], (taskId: string) => EditTaskService.addAnswer(taskId))
 
 	const handleClick = async () => {
 		addAnswer(taskId)
@@ -19,7 +19,7 @@ const AddAnswerVariantButton: FC<AddAnswerVariantButton> = ({ refetch, taskId })
 		if (isSuccess) {
 			refetch()
 		}
-	}, [isSuccess, refetch])
+	}, [isSuccess])
 
 	return (
 		<button onClick={() => handleClick()} className={styles.AddAnswerVariantButton}>

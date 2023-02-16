@@ -21,3 +21,12 @@ export interface ITask {
   updatedAt: string
   __v: number
 }
+
+export interface IAnswer {
+  _id: string
+  owner: string
+  text: string
+  createdAt: string
+  updatedAt: string
+  __v: number
+}

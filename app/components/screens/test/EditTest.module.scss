@@ -1,6 +1,12 @@
-.editAnswerVariant {}
+.editAnswerVariant {
+	@apply flex pl-1 gap-x-3 mt-3 items-center;
+
+	.deleteButton {
+		@apply text-2xl p-1;
+	}
+}
 .decor {
-	@apply w-5 h-5 border rounded-full;
+	@apply w-5 h-5 border rounded-full basis-5 flex-shrink-0;
 }
 .AddAnswerVariantButton {
 	@apply flex pl-1 gap-x-3 mt-3 items-center;

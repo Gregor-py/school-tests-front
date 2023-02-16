@@ -1,14 +1,42 @@
 import EditTestInputLine from '@/components/ui/form-elements/edit-test-elements/EditTestInputLine'
-import { MaterialIcon } from '@/components/ui/icons/MaterialIcon'
-import { ChangeEvent, FC, useState } from 'react'
-import styles from './EditAnswerVariant.module.scss'
+import { useDebouncedMutation } from '@/hooks/useDebouncedMutation'
+import { EditTaskService } from '@/services/task/edit-task.service'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
+import DeleteAnswerButton from './DeleteAnswerButton'
+import styles from './EditTest.module.scss'
 
 interface EditAnswerVariant {
-
+	answerId: string
+	taskId: string
+	refetchTask: () => void
 }
-const EditAnswerVariant: FC<EditAnswerVariant> = () => {
+const EditAnswerVariant: FC<EditAnswerVariant> = ({ answerId, taskId, refetchTask }) => {
+	const { data, isLoading, isSuccess } = useQuery(
+		['get answer data for edit', answerId],
+		() => EditTaskService.getAnswer(answerId),
+		{
+			select({ data }) {
+				return data
+			},
+			onError(error) { }
+		}
+	)
 	const [answerVariantInput, setAnswerVariantInput] = useState('')
 
+	const { mutate: changeText } = useMutation('change answer text', (data: { answerId: string, newAnswerText: string }) => EditTaskService.changeAnswerText(data.answerId, data.newAnswerText))
+
+	useDebouncedMutation(() => changeText({ newAnswerText: answerVariantInput, answerId }), 600, answerVariantInput)
+
+	useEffect(() => {
+		if (data) {
+			setAnswerVariantInput(data.text)
+		}
+	}, [data])
+
+	if (isLoading || !data) {
+		return null
+	}
 
 	return (
 		<div className={styles.editAnswerVariant}>
@@ -18,9 +46,7 @@ const EditAnswerVariant: FC<EditAnswerVariant> = () => {
 				value={answerVariantInput}
 				sizeType={'h3'}
 			/>
-			<button className={styles.deleteButton}>
-				<MaterialIcon name='MdDeleteOutline' />
-			</button>
+			<DeleteAnswerButton answerId={answerId} taskId={taskId} refetchTask={refetchTask} />
 		</div>
 	)
 }

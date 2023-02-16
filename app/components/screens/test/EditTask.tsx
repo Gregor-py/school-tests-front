@@ -5,6 +5,7 @@ import { EditTaskService } from '@/services/task/edit-task.service'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import AddAnswerVariantButton from './AddAnswerVariantButton'
+import EditAnswerVariant from './EditAnswerVariant'
 
 const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 	const { data, isLoading, refetch, isSuccess } = useQuery(
@@ -39,7 +40,15 @@ const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 				sizeType="h2"
 			/>
 
-			{data.answerVariants.map(answer => <div key={answer}>{answer}</div>)}
+			<div>
+				{data.answerVariants.map(answer => <EditAnswerVariant
+					refetchTask={refetch}
+					taskId={taskId}
+					answerId={answer}
+					key={answer}
+				/>)}
+			</div>
+
 
 			<AddAnswerVariantButton refetch={() => refetch()} taskId={taskId} />
 		</div>
