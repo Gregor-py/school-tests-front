@@ -1,5 +1,5 @@
 import { EditTaskService } from '@/services/task/edit-task.service'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import styles from './EditTest.module.scss'
 
@@ -9,15 +9,20 @@ interface AddAnswerVariantButton {
 }
 
 const AddAnswerVariantButton: FC<AddAnswerVariantButton> = ({ refetch, taskId }) => {
-	const { mutate: addAnswer } = useMutation('add answer to task', (taskId: string) => EditTaskService.addAnswer(taskId))
+	const { mutate: addAnswer, isSuccess } = useMutation('add answer to task', (taskId: string) => EditTaskService.addAnswer(taskId))
 
 	const handleClick = async () => {
-		await addAnswer(taskId)
-		refetch()
+		addAnswer(taskId)
 	}
 
+	useEffect(() => {
+		if (isSuccess) {
+			refetch()
+		}
+	}, [isSuccess, refetch])
+
 	return (
-		<button onClick={handleClick} className={styles.AddAnswerVariantButton}>
+		<button onClick={() => handleClick()} className={styles.AddAnswerVariantButton}>
 			<div className={styles.decor}></div>
 			<div className={styles.AddAnswerVariantButtonText}>
 				Додати варіант

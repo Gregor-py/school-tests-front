@@ -1,7 +1,7 @@
 import { MaterialIcon } from '@/components/ui/icons/MaterialIcon'
 import SkeletonLoader from '@/components/ui/SkeletonLoader'
 import { EditTestService } from '@/services/test/edit-test.service'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import EditTask from './EditTask'
 import EditTestHead from './EditTestHead'
@@ -18,12 +18,17 @@ const EditTest: FC<{ testId: string }> = ({ testId }) => {
     }
   )
 
-  const { mutate: addTask } = useMutation('add task to test', (testId: string) => EditTestService.addTask(testId))
+  const { mutate: addTask, isSuccess } = useMutation('add task to test', (testId: string) => EditTestService.addTask(testId))
 
   const handleClick = async () => {
-    await addTask(testId)
-    refetch()
+    addTask(testId)
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetch()
+    }
+  }, [isSuccess, refetch])
 
   if (isLoading || !data) {
     return <div className='mx-auto max-w-3xl'>

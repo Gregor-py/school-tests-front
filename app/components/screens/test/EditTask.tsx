@@ -38,6 +38,9 @@ const EditTask: FC<{ taskId: string }> = ({ taskId }) => {
 				value={questionInput ? questionInput : ''}
 				sizeType="h2"
 			/>
+
+			{data.answerVariants.map(answer => <div key={answer}>{answer}</div>)}
+
 			<AddAnswerVariantButton refetch={() => refetch()} taskId={taskId} />
 		</div>
 	</EditTestBlock>
