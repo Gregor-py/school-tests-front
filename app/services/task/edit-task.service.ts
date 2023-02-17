@@ -18,6 +18,9 @@ export const EditTaskService = {
 	async changeAnswerText(answerId: string, newAnswerText: string) {
 		return axiosAuth.put<IAnswer>(getAnswerUrl(`/${answerId}`), { newAnswerText })
 	},
+	async changeCorrectAnswer(taskId: string, newCorrectAnswerId: string) {
+		return axiosAuth.put<ITask>(getTaskUrl(`/correct-answer/${taskId}`), { newCorrectAnswerId })
+	},
 	async deleteAnswer(answerId: string, taskId: string) {
 		return axiosAuth.put<string>(getTaskUrl(`/answer/${taskId}`), { answerId: answerId })
 	},

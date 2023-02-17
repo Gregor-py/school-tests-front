@@ -4,9 +4,19 @@
 	.deleteButton {
 		@apply text-2xl p-1;
 	}
+
+	.decor {
+		@apply relative;
+		svg {
+			@apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 fill-green-500 text-xl ;
+		}
+		.svgContainer {
+			@apply transition-all;
+		}
+	}
 }
 .decor {
-	@apply w-5 h-5 border rounded-full basis-5 flex-shrink-0;
+	@apply w-6 h-6 border rounded-full basis-6 flex-shrink-0 cursor-pointer;
 }
 .AddAnswerVariantButton {
 	@apply flex pl-1 gap-x-3 mt-3 items-center;

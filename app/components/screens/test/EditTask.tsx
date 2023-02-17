@@ -9,7 +9,7 @@ import DeleteTaskButton from './DeleteTaskButton'
 import EditAnswerVariant from './EditAnswerVariant'
 
 const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) => {
-	const { data, isLoading, refetch, isSuccess } = useQuery(
+	const { data, isLoading, refetch } = useQuery(
 		['get task data for edit', taskId],
 		() => EditTaskService.getTaskById(taskId),
 		{
@@ -20,6 +20,7 @@ const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) =>
 		}
 	)
 	const [questionInput, setQuestionInput] = useState('')
+	const [correctAnswerId, setCorrectAnswerId] = useState<string>('')
 	const { mutate: changeQuestion } = useMutation('change task question', (data: { taskId: string, newQuestion: string }) => EditTaskService.changeTaskQuestion(data.taskId, data.newQuestion))
 
 	useDebouncedMutation(() => changeQuestion({ newQuestion: questionInput, taskId }), 600, questionInput)
@@ -27,6 +28,7 @@ const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) =>
 	useEffect(() => {
 		if (data) {
 			setQuestionInput(data.question)
+			setCorrectAnswerId(data.correctAnswer)
 		}
 	}, [data])
 
@@ -46,6 +48,8 @@ const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) =>
 
 			<div>
 				{data.answerVariants.map(answer => <EditAnswerVariant
+					setCorrectAnswerId={(newCorrectAnswerId) => setCorrectAnswerId(newCorrectAnswerId)}
+					correctAnswerId={correctAnswerId}
 					refetchTask={refetch}
 					taskId={taskId}
 					answerId={answer}
