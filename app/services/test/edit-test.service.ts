@@ -25,5 +25,9 @@ export const EditTestService = {
 
   async changeSubject(testId: string, newSubject: string) {
     return axiosAuth.put<ITest>(getTestUrl(`/change-subject/${testId}`), { newSubject })
+  },
+
+  async changeClass(testId: string, schoolClass: number) {
+    return axiosAuth.put<ITest>(getTestUrl(`/${testId}`), { class: schoolClass })
   }
 }

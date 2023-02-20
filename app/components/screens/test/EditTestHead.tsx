@@ -3,6 +3,7 @@ import { useDebouncedMutation } from '@/hooks/useDebouncedMutation'
 import EditTestInputLine from '@/ui/form-elements/edit-test-elements/EditTestInputLine'
 import EditTestTextarea from '@/ui/form-elements/edit-test-elements/EditTestTextarea'
 import { ChangeEvent, FC, useState } from 'react'
+import SelectClass from './SelectClass'
 import SelectSubject from './SelectSubject'
 import { useEditTestHead } from './useEditTestHead'
 
@@ -11,9 +12,10 @@ interface EditTestHead {
   title: string
   description: string
   subjectId?: string
+  schoolClass: number
 }
 
-const EditTestHead: FC<EditTestHead> = ({ testId, description, title, subjectId }) => {
+const EditTestHead: FC<EditTestHead> = ({ testId, description, title, subjectId, schoolClass }) => {
   const [titleInput, setTitleInput] = useState(description)
   const [descriptionInput, setDescriptionInput] = useState(title)
   const { changeDescription, changeTitle } = useEditTestHead()
@@ -41,6 +43,10 @@ const EditTestHead: FC<EditTestHead> = ({ testId, description, title, subjectId 
       <div className='mt-4 ml-2'>
         <span className="uppercase text-xs">Оберіть предмет</span>
         <SelectSubject testId={testId} subjectId={subjectId} />
+      </div>
+      <div className='mt-4 ml-2'>
+        <span className="uppercase text-xs">Оберіть клас</span>
+        <SelectClass testId={testId} schoolClass={schoolClass} />
       </div>
     </EditTestBlock>
   )

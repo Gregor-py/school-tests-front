@@ -39,7 +39,13 @@ const EditTest: FC<{ testId: string }> = ({ testId }) => {
 
   return (
     <div className='py-4'>
-      <EditTestHead subjectId={data?.subject?._id} testId={testId} description={data.title} title={data.description} />
+      <EditTestHead
+        schoolClass={data.class}
+        subjectId={data?.subject?._id}
+        testId={testId}
+        description={data.title}
+        title={data.description}
+      />
 
       {(data.tasks.map(taskId => <EditTask testId={testId} taskId={taskId} key={taskId} />))}
 

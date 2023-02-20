@@ -35,8 +35,8 @@ const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) =>
 	if (isLoading || !data) {
 		return null
 	}
-	return <EditTestBlock>
-		<div className=''>
+	return (
+		<EditTestBlock className='mt-4'>
 			<div className="flex">
 				<EditTestInputLine
 					onChange={(event: ChangeEvent<HTMLInputElement>) => setQuestionInput(event.target.value)}
@@ -58,8 +58,8 @@ const EditTask: FC<{ taskId: string, testId: string }> = ({ taskId, testId }) =>
 			</div>
 
 			<AddAnswerVariantButton refetch={() => refetch()} taskId={taskId} />
-		</div>
-	</EditTestBlock>
+		</EditTestBlock>
+	)
 }
 
 export default EditTask
