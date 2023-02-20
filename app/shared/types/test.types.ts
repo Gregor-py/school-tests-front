@@ -1,3 +1,5 @@
+import { ISubject } from './subject.types'
+
 export interface ITest {
   _id: string
   owner: string
@@ -6,6 +8,7 @@ export interface ITest {
   description: string
   tags: []
   tasks: string[]
+  subject?: ISubject
   createdAt: string
   updatedAt: string
   __v: number

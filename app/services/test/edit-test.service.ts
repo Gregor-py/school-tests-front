@@ -23,4 +23,7 @@ export const EditTestService = {
     return axiosAuth.put<string>(getTestUrl(`/add-task/${testId}`))
   },
 
+  async changeSubject(testId: string, newSubject: string) {
+    return axiosAuth.put<ITest>(getTestUrl(`/change-subject/${testId}`), { newSubject })
+  }
 }
