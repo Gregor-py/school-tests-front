@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { NextPageAuth } from '@/shared/types/auth.types';
 import { useRouter } from 'next/router';
-import EditTest from '@/screens/test/EditTest';
+import EditTest from '@/screens/edit-test/EditTest';
 import Error404 from '../../404';
 
 const EditTestPage: NextPageAuth = () => {
