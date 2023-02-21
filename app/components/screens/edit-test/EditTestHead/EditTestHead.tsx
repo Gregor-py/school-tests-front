@@ -1,4 +1,4 @@
-import EditTestBlock from '@/ui/form-elements/edit-test-elements/EditTestBlock';
+import Block from '@/ui/Block';
 import { useDebouncedMutation } from '@/hooks/useDebouncedMutation';
 import EditTestInputLine from '@/ui/form-elements/edit-test-elements/EditTestInputLine';
 import EditTestTextarea from '@/ui/form-elements/edit-test-elements/EditTestTextarea';
@@ -38,7 +38,7 @@ const EditTestHead: FC<EditTestHead> = ({
   );
 
   return (
-    <EditTestBlock>
+    <Block>
       <EditTestInputLine
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setTitleInput(event.target.value);
@@ -61,7 +61,7 @@ const EditTestHead: FC<EditTestHead> = ({
         <span className="uppercase text-xs">Оберіть клас</span>
         <SelectClass testId={testId} schoolClass={schoolClass} />
       </div>
-    </EditTestBlock>
+    </Block>
   );
 };
 

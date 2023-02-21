@@ -8,7 +8,7 @@ import EditTestHead from './EditTestHead/EditTestHead';
 
 const EditTest: FC<{ testId: string }> = ({ testId }) => {
   const { data, isLoading, refetch } = useQuery(
-    'get edit-test data for edit',
+    ['get edit-test data for edit', testId],
     () => EditTestService.getTest(testId),
     {
       select({ data }) {

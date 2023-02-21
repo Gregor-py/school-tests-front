@@ -1,4 +1,4 @@
-import EditTestBlock from '@/ui/form-elements/edit-test-elements/EditTestBlock';
+import Block from '@/ui/Block';
 import EditTestInputLine from '@/ui/form-elements/edit-test-elements/EditTestInputLine';
 import { useDebouncedMutation } from '@/hooks/useDebouncedMutation';
 import { EditTaskService } from '@/services/task/edit-task.service';
@@ -47,7 +47,7 @@ const EditTask: FC<{ taskId: string; testId: string }> = ({
     return null;
   }
   return (
-    <EditTestBlock className="mt-4">
+    <Block className="mt-4">
       <div className="flex">
         <EditTestInputLine
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -79,7 +79,7 @@ const EditTask: FC<{ taskId: string; testId: string }> = ({
       </div>
 
       <AddAnswerVariantButton refetch={() => refetch()} taskId={taskId} />
-    </EditTestBlock>
+    </Block>
   );
 };
 
