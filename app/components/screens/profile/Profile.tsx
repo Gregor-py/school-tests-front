@@ -11,6 +11,7 @@ import { useMutation } from 'react-query';
 import { EditTaskService } from '@/services/task/edit-task.service';
 import { UserService } from '@/services/user.service';
 import { useAuth } from '@/hooks/useAuth';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 interface ChangeProfileFields {
   name: string;
@@ -34,7 +35,7 @@ const Profile: FC = () => {
     changeSecondName({ secondName: data.secondName });
   };
 
-  const { user, isLoading } = useAuth();
+  const { user, isLoading } = useCurrentUser();
 
   if (isLoading || !user) {
     return null;
@@ -51,6 +52,7 @@ const Profile: FC = () => {
             {...register('name', {
               required: 'Поле має бути заповнене'
             })}
+            defaultValue={user.name}
             placeholder={`Ім'я`}
             error={formState.errors.name}
             icon={'MdVerifiedUser'}
@@ -60,6 +62,7 @@ const Profile: FC = () => {
             {...register('secondName', {
               required: 'Поле має бути заповнене'
             })}
+            defaultValue={user.secondName}
             placeholder="Прізвище"
             error={formState.errors.secondName}
             icon={'MdVerifiedUser'}
