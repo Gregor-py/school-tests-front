@@ -6,7 +6,7 @@
 
   .placeholder {}
   .input {
-    @apply bg-white rounded-xl flex items-center gap-2 border-bgcolor-200 border-2 px-3;
+    @apply bg-white rounded-xl flex items-center gap-2 border-bgcolor-200 border-2 px-3 ;
 
     div {
       @apply border-r-bgcolor-200 h-full;
@@ -16,7 +16,7 @@
       @apply w-6 h-6 border-r-bgcolor-200;
     }
     input {
-      @apply focus:border-bgcolor-200 focus:shadow-none border-transparent focus:border-transparent focus:ring-0;
+      @apply focus:border-bgcolor-200 focus:shadow-none border-transparent focus:border-transparent focus:ring-0 w-full basis-full;
     }
   }
   .error {

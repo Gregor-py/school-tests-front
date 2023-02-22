@@ -1,9 +1,10 @@
 import { NextPageAuth } from '@/shared/types/auth.types';
+import Profile from '@/screens/profile/Profile';
 
 const ProfilePage: NextPageAuth = () => {
-  return <div>ProfilePage</div>;
+  return <Profile />;
 };
 
-ProfilePage.isOnlyUser = true
+ProfilePage.isOnlyUser = true;
 
-export default ProfilePage; 
+export default ProfilePage;
