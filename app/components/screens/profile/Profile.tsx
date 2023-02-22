@@ -12,6 +12,7 @@ import { EditTaskService } from '@/services/task/edit-task.service';
 import { UserService } from '@/services/user.service';
 import { useAuth } from '@/hooks/useAuth';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
+import SkeletonLoader from '@/ui/SkeletonLoader';
 
 interface ChangeProfileFields {
   name: string;
@@ -38,7 +39,12 @@ const Profile: FC = () => {
   const { user, isLoading } = useCurrentUser();
 
   if (isLoading || !user) {
-    return null;
+    return (
+      <div className="mx-auto max-w-3xl">
+        <SkeletonLoader count={1} className="h-14 mt-5" />
+        <SkeletonLoader count={1} className="h-44 mt-5" />
+      </div>
+    );
   }
 
   return (
