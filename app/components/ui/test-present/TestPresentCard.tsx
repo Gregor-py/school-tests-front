@@ -3,7 +3,7 @@ import { ITest } from '@/shared/types/test.types';
 import Image from 'next/image';
 import { subjectImageData } from '@/ui/test-present/subject-image.data';
 import Link from 'next/link';
-import styles from './TestPresentCard.module.scss';
+import styles from './TestPresent.module.scss';
 import classNames from 'classnames';
 
 interface TestPresentCard {
