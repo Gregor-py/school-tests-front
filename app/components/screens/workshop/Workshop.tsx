@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { useCreatedTests } from '@/screens/workshop/useCreatedTests';
 import CreateTestButton from '@/screens/workshop/CreateTestButton';
 import { log } from 'util';
+import TestPresentCard from '@/ui/test-present/TestPresentCard';
 
 const Workshop: FC = () => {
   const { createdTests, isLoading } = useCreatedTests();
@@ -15,21 +16,9 @@ const Workshop: FC = () => {
         <Block className="text-center mt-3 text-xl" full={true}>
           Створені тести
         </Block>
-        <div className="grid grid-cols-4 gap-2 mt-4">
+        <div className="grid grid-cols-4 gap-3 mt-4">
           {createdTests?.map((createdTest) => (
-            <Link href={`/test/edit/${createdTest._id}`} key={createdTest._id}>
-              <a>
-                <Block className="w-full">
-                  <div className="text-lg truncate">{createdTest.title}</div>
-                  <div className="text-base truncate">
-                    {createdTest.subject?.name}
-                  </div>
-                  <div className="text-base truncate">
-                    Клас: {createdTest.class}
-                  </div>
-                </Block>
-              </a>
-            </Link>
+            <TestPresentCard test={createdTest} key={createdTest._id} />
           ))}
         </div>
         <CreateTestButton refetch={() => console.log()} />

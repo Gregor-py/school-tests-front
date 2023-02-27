@@ -1,0 +1,24 @@
+.card {
+  @apply rounded-xl border-textcolor-200 bg-white h-full relative shadow-xl hover:translate-x-1 hover:translate-y-1 transition-all;
+
+  .bottom {
+    @apply p-3;
+  }
+}
+
+.superimposedBlock {
+  @apply absolute top-2 left-2 z-20 flex flex-col ;
+
+  &Item {
+    @apply py-2 px-3 rounded-xl shadow inline-block flex-grow-0 ;
+  }
+}
+
+.image {
+  @apply w-full relative;
+
+  padding-bottom: 57%;
+  img {
+    @apply w-full h-full object-cover absolute top-0 right-0 rounded-t-xl;
+  }
+}
