@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from '@/store/store';
 import AuthProvider from './AuthProvider/AuthProvider';
 import { TypeComponentAuthFields } from '@/shared/types/auth.types';
+import NextNProgress from 'nextjs-progressbar';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,13 @@ const MainProvider: FC<TypeComponentAuthFields> = ({ children, Component }) => {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider Component={Component}>
+          <NextNProgress
+            color="#29D"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={3}
+            showOnShallow={true}
+          />
           <Layout>{children}</Layout>
         </AuthProvider>
         <CustomizedToast />
