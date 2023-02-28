@@ -1,15 +1,59 @@
-import { FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import Meta from '@/utils/meta/Meta';
-import { toast } from 'react-toastify';
-import TestsSlider from '@/ui/test-present/tests-slider/TestsSlider';
-import { useCreatedTests } from '@/screens/workshop/useCreatedTests';
+import TestsList from '@/components/ui/test-present/TestsList';
+import styles from './Home.module.scss';
+import { MaterialIcon } from '@/ui/icons/MaterialIcon';
+import { useQuery } from 'react-query';
+import { useDebounce } from '@/hooks/useDebounce';
+import { TestService } from '@/services/test/test.service';
+import dynamic from 'next/dynamic';
+const DynamicSelectSubjectSearch = dynamic(
+  () => import('@/screens/home/SelectSubjectSearch'),
+  { ssr: false }
+);
+const DynamicSelectClassSearch = dynamic(
+  () => import('@/screens/home/SelectClassSearch'),
+  { ssr: false }
+);
 
 const Home: FC = () => {
-  const { createdTests, isLoading } = useCreatedTests();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [subject, setSubject] = useState<string>('');
+  const [schoolClass, setSchoolClass] = useState<number>(0);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const { data } = useQuery(
+    ['search tests', debouncedSearchTerm, subject, schoolClass],
+    () => TestService.search(debouncedSearchTerm, schoolClass, subject),
+    {
+      select: ({ data }) => data
+    }
+  );
   return (
     <Meta title="Шкільні тести" description={'Створюй та виконуй тести'}>
-      <TestsSlider testsList={createdTests} title={'Популярні тести'} />
-      <TestsSlider testsList={createdTests} title={'Непопулярні тести'} />
+      <div className={'mt-3 flex gap-2 items-center'}>
+        <div className={styles.searchField}>
+          <input
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              setSearchTerm(event.target.value)
+            }
+            value={searchTerm}
+            type="text"
+            placeholder={'Пошук'}
+          />
+          <div className={styles.iconDecor}>
+            <MaterialIcon name={'MdSearch'} />
+          </div>
+        </div>
+        <DynamicSelectSubjectSearch
+          value={subject}
+          setValue={(value) => setSubject(value)}
+        />
+        <DynamicSelectClassSearch
+          setValue={setSchoolClass}
+          value={schoolClass}
+        />
+      </div>
+      <TestsList testsList={data} />
     </Meta>
   );
 };

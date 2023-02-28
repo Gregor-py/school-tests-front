@@ -1,0 +1,17 @@
+.searchField {
+  @apply flex items-center;
+
+  >input {
+    @apply rounded-l-xl;
+  }
+
+  .iconDecor {
+    @apply border-textcolor-200 px-3 bg-white rounded-r-xl py-2;
+    border-width: 1px;
+    border-left-width: 0;
+
+    >svg {
+      @apply text-2xl ;
+    }
+  }
+}
