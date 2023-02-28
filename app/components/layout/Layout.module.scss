@@ -2,7 +2,8 @@
   @apply flex bg-bgcolor-200;
   min-height: 100vh;
 
-  &>main {
+  & > main {
     @apply flex-grow px-4;
+    min-width: 0;
   }
 }

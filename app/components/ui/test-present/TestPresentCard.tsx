@@ -8,13 +8,14 @@ import classNames from 'classnames';
 
 interface TestPresentCard {
   test: ITest;
+  shadows?: boolean;
 }
 
-const TestPresentCard: FC<TestPresentCard> = ({ test }) => {
+const TestPresentCard: FC<TestPresentCard> = ({ test, shadows = true }) => {
   return (
     <Link href={`/test/edit/${test._id}`}>
       <a>
-        <div className={styles.card}>
+        <div className={classNames(styles.card, { 'shadow-xl': shadows })}>
           <div className={styles.superimposedBlock}>
             <div>
               <span
