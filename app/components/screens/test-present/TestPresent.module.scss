@@ -1,0 +1,35 @@
+.container {
+  @apply max-w-3xl rounded-lg mx-auto mt-5 bg-white pb-3;
+}
+
+.image {
+  @apply w-full relative;
+
+  padding-bottom: 30%;
+
+  img {
+    @apply w-full h-full object-cover absolute top-0 right-0 rounded-t-xl;
+  }
+}
+
+.bottom {
+  @apply px-4 py-3;
+  .title {
+    @apply text-3xl;
+  }
+  .description {
+    @apply text-lg mt-4;
+  }
+  .stats {
+    @apply mt-3 flex flex-col gap-1;
+    >p {
+      @apply flex items-center text-lg gap-3;
+      >span {
+        @apply  rounded-xl px-3 text-white;
+      }
+    }
+  }
+}
+.startButton {
+  @apply text-2xl bg-green-500 px-2 py-2 rounded-xl w-3/4 mx-auto mt-3 block text-white;
+}
