@@ -22,7 +22,7 @@ const TestPresentCard: FC<TestPresentCard> = ({
   if (linkType === 'edit') {
     href = `/test/edit/${test._id}`;
   } else {
-    href = `/test/present/${test._id}`;
+    href = `/test/${test._id}`;
   }
 
   return (
