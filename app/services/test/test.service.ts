@@ -21,5 +21,8 @@ export const TestService = {
     }
 
     return axiosClassic.get<ITest[]>(searchParameters);
+  },
+  async getTest(testId: string) {
+    return axiosClassic.get<ITest>(getTestUrl(`/${testId}`));
   }
 };
