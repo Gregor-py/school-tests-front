@@ -53,7 +53,7 @@ const Home: FC = () => {
           value={schoolClass}
         />
       </div>
-      <TestsList testsList={data} />
+      <TestsList linkType={'present'} testsList={data} />
     </Meta>
   );
 };

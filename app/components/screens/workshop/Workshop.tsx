@@ -14,7 +14,7 @@ const Workshop: FC = () => {
         <Block className="text-center mt-3 text-xl" full={true}>
           Створені тести
         </Block>
-        <TestsList testsList={createdTests} />
+        <TestsList linkType={'edit'} testsList={createdTests} />
         <CreateTestButton refetch={() => console.log()} />
       </div>
     </Meta>

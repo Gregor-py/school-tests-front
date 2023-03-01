@@ -9,11 +9,24 @@ import classNames from 'classnames';
 interface TestPresentCard {
   test: ITest;
   shadows?: boolean;
+  linkType: 'edit' | 'present';
 }
 
-const TestPresentCard: FC<TestPresentCard> = ({ test, shadows = true }) => {
+const TestPresentCard: FC<TestPresentCard> = ({
+  test,
+  shadows = true,
+  linkType
+}) => {
+  let href = '';
+
+  if (linkType === 'edit') {
+    href = `/test/edit/${test._id}`;
+  } else {
+    href = `/test/present/${test._id}`;
+  }
+
   return (
-    <Link href={`/test/edit/${test._id}`}>
+    <Link href={href}>
       <a>
         <div className={classNames(styles.card, { 'shadow-xl': shadows })}>
           <div className={styles.superimposedBlock}>
