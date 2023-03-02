@@ -8,8 +8,14 @@ import { useQuery } from 'react-query';
 import { TestService } from '@/services/test/test.service';
 import Error404 from '../../../../pages/404';
 import SkeletonLoader from '@/ui/SkeletonLoader';
+import { useAuth } from '@/hooks/useAuth';
+import { useAuthRedirect } from '@/screens/auth/useAuthRedirect';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const TestPresent: FC<{ testId: string }> = ({ testId }) => {
+  const { push } = useRouter();
+  const { user, isLoading: isLoadingUser } = useAuth();
   const { data: test, isLoading } = useQuery(
     'get test for test present',
     () => TestService.getTest(testId),
@@ -23,7 +29,15 @@ const TestPresent: FC<{ testId: string }> = ({ testId }) => {
     }
   );
 
-  if (isLoading || !test) {
+  const handleClick = () => {
+    if (!user) {
+      push(`/auth/login?redirect=/test/start-test/${testId}`);
+      return;
+    } else {
+      push(`/test/start-test/${testId}`);
+    }
+  };
+  if (isLoading || !test || isLoadingUser) {
     return (
       <Meta title="" description="">
         <SkeletonLoader />
@@ -67,7 +81,9 @@ const TestPresent: FC<{ testId: string }> = ({ testId }) => {
             </p>
           </div>
         </div>
-        <button className={styles.startButton}>Розпочати тест</button>
+        <button onClick={handleClick} className={styles.startButton}>
+          Розпочати тест
+        </button>
       </div>
     </Meta>
   );

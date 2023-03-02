@@ -7,3 +7,5 @@ export const getTestUrl = (string: string) => `${API_URL}/tests${string}`;
 export const getTaskUrl = (string: string) => `${API_URL}/tasks${string}`;
 export const getAnswerUrl = (string: string) => `${API_URL}/answers${string}`;
 export const getUserUrl = (string: string) => `${API_URL}/users${string}`;
+export const getPassingTestUrl = (string: string) =>
+  `${API_URL}/passing-test${string}`;
