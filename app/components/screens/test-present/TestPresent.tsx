@@ -4,8 +4,32 @@ import { ITest } from '@/shared/types/test.types';
 import styles from './TestPresent.module.scss';
 import Image from 'next/image';
 import { subjectImageData } from '@/ui/test-present/subject-image.data';
+import { useQuery } from 'react-query';
+import { TestService } from '@/services/test/test.service';
+import Error404 from '../../../../pages/404';
+import SkeletonLoader from '@/ui/SkeletonLoader';
 
-const TestPresent: FC<{ test: ITest }> = ({ test }) => {
+const TestPresent: FC<{ testId: string }> = ({ testId }) => {
+  const { data: test, isLoading } = useQuery(
+    'get test for test present',
+    () => TestService.getTest(testId),
+    {
+      select({ data }) {
+        return data;
+      },
+      onError() {
+        return <Error404 />;
+      }
+    }
+  );
+
+  if (isLoading || !test) {
+    return (
+      <Meta title="" description="">
+        <SkeletonLoader />
+      </Meta>
+    );
+  }
   return (
     <Meta title={test.title} description={test.description}>
       <div className={styles.container}>
