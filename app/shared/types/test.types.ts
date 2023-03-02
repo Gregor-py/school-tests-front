@@ -1,4 +1,5 @@
 import { ISubject } from './subject.types';
+import { IUser } from '@/shared/types/user.types';
 
 export interface ITest {
   _id: string;
@@ -29,6 +30,17 @@ export interface IAnswer {
   _id: string;
   owner: string;
   text: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface IPassingTest {
+  _id: string;
+  owner: IUser;
+  testParent: ITest;
+  passedTasks: string[];
+  isPassed: boolean;
   createdAt: string;
   updatedAt: string;
   __v: number;

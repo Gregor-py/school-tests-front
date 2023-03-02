@@ -1,13 +1,15 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { NextPageAuth } from '@/shared/types/auth.types';
 import { useRouter } from 'next/router';
-import { usePassingTest } from '@/screens/edit-test/usePassingTest';
-import ErrorLoader from 'next/dist/build/webpack/loaders/error-loader';
-import Error404 from '../../404';
+import { useMutation } from 'react-query';
+import { PassingTestService } from '@/services/passing-test.service';
 
 const StartTestPage: NextPageAuth = () => {
   const { query, push } = useRouter();
-  const { startTest, startedTestId } = usePassingTest(String(query.id));
+  const { mutate: startTest, data: startedTestId } = useMutation(
+    ['start test', query?.id],
+    (testId: string) => PassingTestService.startTest(testId)
+  );
 
   useEffect(() => {
     if (query?.id) {

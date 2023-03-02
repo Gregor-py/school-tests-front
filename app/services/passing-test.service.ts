@@ -1,5 +1,6 @@
 import { axiosAuth } from '../api/interceptors';
 import { getPassingTestUrl } from '@/config/api.config';
+import { IPassingTest } from '@/shared/types/test.types';
 
 export const PassingTestService = {
   async startTest(testId: string) {
@@ -7,5 +8,24 @@ export const PassingTestService = {
       getPassingTestUrl(`/start/${testId}`)
     );
     return response.data;
+  },
+  async get(passingTestId: string) {
+    return axiosAuth.get<IPassingTest>(getPassingTestUrl(`/${passingTestId}`));
+  },
+  async getNotPassedTasks(passingTestId: string) {
+    return axiosAuth.get<string[]>(
+      getPassingTestUrl(`/not-passed-tasks/${passingTestId}`)
+    );
+  },
+  async addPassedTask(
+    passingTestId: string,
+    taskId: string,
+    chosenAnswer: string
+  ) {
+    return axiosAuth.put(getPassingTestUrl(`/passed-task`), {
+      passingTestId,
+      taskId,
+      chosenAnswer
+    });
   }
 };
