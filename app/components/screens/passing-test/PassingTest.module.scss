@@ -1,0 +1,27 @@
+.container {
+  @apply flex justify-center items-center;
+  min-height: 100vh;
+
+  >div>div>div {
+    align-items: center;
+  }
+}
+
+.passingTask {
+  @apply bg-white rounded-xl p-5 h-full;
+  .title {
+    @apply text-2xl;
+  }
+  .answers {
+    @apply mt-4 flex flex-col gap-3 justify-start ml-3;
+    .answerVariant {
+      @apply flex items-center gap-5 py-1;
+      .decor {
+        @apply w-6 h-6 border rounded-full basis-6 flex-shrink-0 cursor-pointer;
+      }
+      .text {
+
+      }
+    }
+  }
+}

@@ -15,22 +15,12 @@ interface EditTestHead {
   schoolClass: number;
 }
 
-const EditTestHead: FC<EditTestHead> = ({
-  testId,
-  description,
-  title,
-  subjectId,
-  schoolClass
-}) => {
+const EditTestHead: FC<EditTestHead> = ({ testId, description, title, subjectId, schoolClass }) => {
   const [titleInput, setTitleInput] = useState(description);
   const [descriptionInput, setDescriptionInput] = useState(title);
   const { changeDescription, changeTitle } = useEditTestHead();
 
-  useDebouncedMutation(
-    () => changeTitle({ newTitle: titleInput, testId }),
-    600,
-    titleInput
-  );
+  useDebouncedMutation(() => changeTitle({ newTitle: titleInput, testId }), 600, titleInput);
   useDebouncedMutation(
     () => changeDescription({ description: descriptionInput, testId }),
     600,

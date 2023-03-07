@@ -18,9 +18,8 @@ const EditTest: FC<{ testId: string }> = ({ testId }) => {
     }
   );
 
-  const { mutate: addTask, isSuccess } = useMutation(
-    'add task to edit-test',
-    (testId: string) => EditTestService.addTask(testId)
+  const { mutate: addTask, isSuccess } = useMutation('add task to edit-test', (testId: string) =>
+    EditTestService.addTask(testId)
   );
 
   const handleClick = async () => {
