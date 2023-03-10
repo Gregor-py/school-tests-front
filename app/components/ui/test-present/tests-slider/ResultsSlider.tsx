@@ -8,14 +8,18 @@ import { Navigation } from 'swiper';
 import NavSlideButton from '@/ui/test-present/tests-slider/NavSlideButton';
 import ResultPresentCard from '@/ui/test-present/ResultPresentCard';
 
-interface TestsSlider {
-  testsList?: ITest[];
-  title: string;
-  type?: 'test' | 'result';
+export interface IResult {
+  test: ITest;
+  correctPercent?: number;
+  passingTestId: string;
 }
 
-const TestsSlider: FC<TestsSlider> = ({ testsList, title, type = 'test' }) => {
-  if (!testsList) {
+interface TestsSlider {
+  resultsList?: IResult[];
+}
+
+const ResultsSlider: FC<TestsSlider> = ({ resultsList }) => {
+  if (!resultsList) {
     return (
       <div className="grid grid-cols-4 gap-3 mt-4">
         <SkeletonLoader count={1} className="h-52" />
@@ -25,7 +29,7 @@ const TestsSlider: FC<TestsSlider> = ({ testsList, title, type = 'test' }) => {
 
   return (
     <div className={styles.testsSlider}>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>{'Розпочаті тести'}</h2>
       <Swiper
         className={'py-4 px-12 '}
         spaceBetween={20}
@@ -33,13 +37,14 @@ const TestsSlider: FC<TestsSlider> = ({ testsList, title, type = 'test' }) => {
         navigation
         modules={[Navigation]}
       >
-        {testsList.map((test) => (
-          <SwiperSlide key={test._id} className={'h-auto'}>
-            {type === 'test' ? (
-              <TestPresentCard test={test} key={test._id} linkType={'present'} shadows={false} />
-            ) : (
-              <ResultPresentCard test={test} correctPercent={100} key={test._id} shadows={false} />
-            )}
+        {resultsList.map((result) => (
+          <SwiperSlide key={result.passingTestId} className={'h-auto'}>
+            <ResultPresentCard
+              test={result.test}
+              correctPercent={result.correctPercent}
+              shadows={false}
+              passingTestId={result.passingTestId}
+            />
           </SwiperSlide>
         ))}
         <div className={'flex justify-center gap-3 mt-4'}>
@@ -51,4 +56,4 @@ const TestsSlider: FC<TestsSlider> = ({ testsList, title, type = 'test' }) => {
   );
 };
 
-export default TestsSlider;
+export default ResultsSlider;

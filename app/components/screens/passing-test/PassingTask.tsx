@@ -14,14 +14,18 @@ const PassingTask: FC<PassingTask> = ({ passingTestId, task, isLast }) => {
   const { addPassedTask, finishTest } = usePassingTest(passingTestId);
   const swiper = useSwiper();
 
-  const handleAnswerClick = (chosenAnswer: string) => {
-    addPassedTask({ taskId: task._id, chosenAnswer: chosenAnswer });
-
+  const handleAnswerClick = async (chosenAnswer: string) => {
     if (isLast) {
-      finishTest();
+      addPassedTask(
+        { taskId: task._id, chosenAnswer: chosenAnswer },
+        { onSuccess: () => finishTest() }
+      );
+    } else {
+      addPassedTask(
+        { taskId: task._id, chosenAnswer: chosenAnswer },
+        { onSuccess: () => swiper.slideNext() }
+      );
     }
-
-    swiper.slideNext();
   };
 
   return (

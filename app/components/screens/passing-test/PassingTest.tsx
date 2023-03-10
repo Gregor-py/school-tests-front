@@ -6,6 +6,7 @@ import Error404 from '../../../../pages/404';
 import PassingTask from '@/screens/passing-test/PassingTask';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './PassingTest.module.scss';
+import { PieChart } from 'react-minimal-pie-chart';
 
 const PassingTest: FC<{ passingTestId: string }> = ({ passingTestId }) => {
   const { passingTest, notPassedTasks, isLoading, refetchPassingTest, isSuccessFinishingTest } =
@@ -26,7 +27,42 @@ const PassingTest: FC<{ passingTestId: string }> = ({ passingTestId }) => {
   }
   if (passingTest.isPassed) {
     return (
-      <div className={'text-3xl text-amber-400'}>Тут має бути статистика та перевірений тест</div>
+      <Meta title={passingTest.testParent.title} description={passingTest.testParent.description}>
+        <div className={styles.result}>
+          <div className={'text-3xl text-center mb-8'}>Результати</div>
+          <div className={styles.stats}>
+            {passingTest.correctPercent ? (
+              <>
+                <div>
+                  <PieChart
+                    style={{ maxWidth: 150 }}
+                    data={[
+                      { title: 'Правильні', value: passingTest.correctPercent, color: '#08fc61' },
+                      {
+                        title: 'Неправильні',
+                        value: 100 - passingTest.correctPercent,
+                        color: '#fc0835'
+                      }
+                    ]}
+                  />
+                </div>
+                <div>
+                  Результат у відсотках:
+                  <div>
+                    <span>{passingTest.correctPercent}%</span>
+                  </div>
+                </div>
+                <div>
+                  Результат по 12 бальній системі:
+                  <div>
+                    <span>{passingTest.correctPercent * 0.12} бал.</span>
+                  </div>
+                </div>
+              </>
+            ) : null}
+          </div>
+        </div>
+      </Meta>
     );
   }
 

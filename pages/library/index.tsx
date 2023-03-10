@@ -1,9 +1,10 @@
 import { NextPageAuth } from '@/shared/types/auth.types';
+import Library from '@/screens/library/Library';
 
-const Library: NextPageAuth = () => {
-  return <div>Library Page</div>;
+const LibraryPage: NextPageAuth = () => {
+  return <Library />;
 };
 
-Library.isOnlyUser = true;
+LibraryPage.isOnlyUser = true;
 
-export default Library;
+export default LibraryPage;

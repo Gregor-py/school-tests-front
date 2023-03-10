@@ -43,5 +43,6 @@ export interface IPassingTest {
   isPassed: boolean;
   createdAt: string;
   updatedAt: string;
+  correctPercent?: number;
   __v: number;
 }

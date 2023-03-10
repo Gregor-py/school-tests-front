@@ -21,7 +21,7 @@ export const usePassingTest = (passingTestId: string) => {
       }
     }
   );
-  const { mutate: addPassedTask } = useMutation(
+  const { mutate: addPassedTask, isLoading: isLoadingAddingPassedTask } = useMutation(
     ['add passed test', passingTestId],
     (data: { taskId: string; chosenAnswer: string }) =>
       PassingTestService.addPassedTask(passingTestId, data.taskId, data.chosenAnswer)
@@ -45,6 +45,7 @@ export const usePassingTest = (passingTestId: string) => {
     finishTest,
     refetchPassingTest,
     isSuccessFinishingTest,
+    isLoadingFinishingTest,
     isLoading: isLoading && isLoadingNotPassedTasks && isLoadingFinishingTest
   };
 };
