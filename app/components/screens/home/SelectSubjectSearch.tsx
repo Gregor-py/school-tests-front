@@ -8,9 +8,10 @@ import SelectSubject from '@/screens/edit-test/EditTestHead/SelectSubject';
 interface SelectSubjectSearch {
   setValue: (value: string) => void;
   value: string;
+  defaultSubject?: string;
 }
 
-const SelectSubjectSearch: FC<SelectSubjectSearch> = ({ setValue, value }) => {
+const SelectSubjectSearch: FC<SelectSubjectSearch> = ({ setValue, value, defaultSubject }) => {
   const { data, isLoading } = useQuery(
     ['get subjects for search tests'],
     () => SubjectService.getAllSubjects(),
@@ -38,11 +39,12 @@ const SelectSubjectSearch: FC<SelectSubjectSearch> = ({ setValue, value }) => {
     }
   };
   const defaultValue = { label: 'Всі предмети', value: '' };
+  const defaultSubjectOption = defaultSubject && { label: '', value: defaultSubject };
   const options = [defaultValue, ...data];
 
   return (
     <ReactSelect
-      defaultValue={defaultValue}
+      defaultValue={defaultSubjectOption ? defaultSubjectOption : defaultValue}
       onChange={handleChange}
       options={options}
       isLoading={isLoading}

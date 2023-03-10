@@ -4,23 +4,19 @@ import { IMenuItemSubject } from '@/components/layout/Navigation/menu/menu.inter
 import { getSearchPageWithSubject } from '@/config/url.config';
 
 export const usePopularSubjects = () => {
-  return useQuery(
-    'popular subject-menu menu',
-    () => SubjectService.getPopularSubjects(),
-    {
-      select({ data }) {
-        return data
-          .map(
-            (subject) =>
-              ({
-                title: subject.name,
-                link: getSearchPageWithSubject(subject.slug),
-                countTests: subject.countTests
-              } as IMenuItemSubject)
-          )
-          .splice(0, 4);
-      },
-      onError(error) {}
-    }
-  );
+  return useQuery('popular subject-menu menu', () => SubjectService.getPopularSubjects(), {
+    select({ data }) {
+      return data
+        .map(
+          (subject) =>
+            ({
+              title: subject.name,
+              link: `/?subject=${subject._id}`,
+              countTests: subject.countTests
+            } as IMenuItemSubject)
+        )
+        .splice(0, 4);
+    },
+    onError(error) {}
+  });
 };
