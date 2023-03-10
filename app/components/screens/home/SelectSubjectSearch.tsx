@@ -39,7 +39,7 @@ const SelectSubjectSearch: FC<SelectSubjectSearch> = ({ setValue, value, default
     }
   };
   const defaultValue = { label: 'Всі предмети', value: '' };
-  const defaultSubjectOption = defaultSubject && { label: '', value: defaultSubject };
+  const defaultSubjectOption = defaultSubject && { label: 'Якийсь предмет', value: defaultSubject };
   const options = [defaultValue, ...data];
 
   return (

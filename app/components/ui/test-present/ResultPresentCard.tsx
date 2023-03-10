@@ -36,7 +36,7 @@ const ResultPresentCard: FC<ResultPresentCard> = ({
                 {test.class} клас
               </span>
             </div>
-            {correctPercent && (
+            {correctPercent !== undefined && (
               <div>
                 <span
                   className={classNames(

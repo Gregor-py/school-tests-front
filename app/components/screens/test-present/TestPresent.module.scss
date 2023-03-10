@@ -1,7 +1,10 @@
 .container {
   @apply max-w-3xl rounded-lg mx-auto mt-5 bg-white pb-3;
 }
-
+.favoriteButton {
+  @apply absolute right-0 bottom-20 pt-8 bg-no-repeat w-24 h-16 bg-left mx-auto bg-transparent;
+  background-size: 2900%;
+}
 .image {
   @apply w-full relative;
 

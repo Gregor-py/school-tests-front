@@ -10,7 +10,6 @@ export const profileMenu: IMenu = {
   items: [
     { icon: 'MdHail', link: '/profile', title: 'Профіль' },
     { icon: 'MdLibraryBooks', link: '/library', title: 'Бібліотека' },
-    { icon: 'MdFavorite', link: '/favorite', title: 'Обрані тести' },
     { icon: 'MdWork', link: '/workshop', title: 'Майстерня' }
   ]
 };

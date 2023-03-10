@@ -31,7 +31,7 @@ const PassingTest: FC<{ passingTestId: string }> = ({ passingTestId }) => {
         <div className={styles.result}>
           <div className={'text-3xl text-center mb-8'}>Результати</div>
           <div className={styles.stats}>
-            {passingTest.correctPercent ? (
+            {passingTest.correctPercent !== undefined ? (
               <>
                 <div>
                   <PieChart

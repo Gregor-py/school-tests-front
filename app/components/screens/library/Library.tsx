@@ -26,7 +26,6 @@ const Library: FC = () => {
 
   return (
     <Meta title={'Бібліотека'} description={'Опис бібліотека'}>
-      <h1>Бібліотека</h1>
       <ResultsSlider resultsList={results} />
     </Meta>
   );
